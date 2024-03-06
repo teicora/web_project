@@ -1,0 +1,382 @@
+
+/* body */
+
+body {
+  font-family: "Inter-Bold", Helvetica;
+
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* endbody */
+
+/* header */
+
+.header {
+  height: 80px;
+  display: flex;
+  padding: 15px;
+  justify-content: space-between;
+  align-items: center; /* Добавляем это свойство */
+  position: relative;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background-color: var(--yellow-300);
+}
+
+.logo {
+  width: 150px;
+  height: 20px;
+  position: relative;
+  font-weight: bold;
+}
+
+.search-bar {
+  width: 600px;
+  height: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  padding-left: 15px;
+  color: #333333;
+  position: relative;
+  margin-right: 50px;
+}
+input {
+  width: 400px;
+  justify-content: flex-start;
+  margin-top: 5px;
+}
+.search-bar::before {
+  content: "\f002";
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+.navigation {
+  justify-content: flex-end;
+  gap: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.navigation a {
+  font-size: 16px;
+  color: #333333;
+}
+
+/* endheader */
+
+/* footer */
+
+.footer {
+  position: absolute;
+  width: 100%;
+  height: 273px;
+  left: 0;
+  background-color: var(--yellow-300);
+}
+
+.logo-2 {
+  width: 292px;
+  height: 56px;
+  top: 113px;
+  left: 114px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-wrapper-9 {
+  width: 177px;
+  height: 47px;
+  flex-shrink: 0;
+  padding: 20px;
+
+  color: #000;
+  font-family: "Inter-Regular";
+  font-size: 38.897px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.icon-2 {
+  position: absolute;
+  width: 50px;
+  height: 46px;
+  top: 0;
+  left: 0;
+}
+
+.footer-info {
+  position: absolute;
+  width: 251px;
+  height: 111px;
+  top: 88px;
+  left: 1126px;
+}
+
+.icons {
+  position: absolute;
+  width: 235px;
+  height: 50px;
+  top: 61px;
+  left: 14px;
+}
+
+.text-wrapper-5 {
+  position: absolute;
+  width: 248px;
+  top: 0;
+  left: 0;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-weight: 600;
+  color: var(--neutral-950);
+  font-size: 26px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+/* endfooter */
+
+/* banner */
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 362px;
+
+}
+
+.banner img{
+  width: 100%;
+  height: 362px;
+  object-fit: cover;
+}
+
+.banner .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Черный фон с 50% прозрачности */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner .overlay .p {
+  color: white; /* Цвет текста */
+  font-family: var(--all-banner-font-family);
+  font-weight: var(--all-banner-font-weight);
+  font-size: var(--all-banner-font-size);
+  letter-spacing: var(--all-banner-letter-spacing);
+  line-height: var(--all-banner-line-height);
+  font-style: var(--all-banner-font-style);
+  width: 30%;
+  text-align: center;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+/* endbanner */
+
+/* content */
+
+.frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+  flex-direction: column;
+  position: relative;
+}
+.cards {
+  padding: 23px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  gap: 38px;
+}
+.card {
+  width: 403px;
+  position: relative;
+  height: 473.68px;
+}
+
+.overlap-group-2 {
+  position: absolute;
+  width: 403px;
+  height: 262px;
+  top: 212px;
+  left: 0;
+  background-color: var(--white-200);
+  border-radius: 0px 0px 33px 33px;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+
+  top: 100px;
+  padding: 58px 27.5px 42px 28.5px;
+  gap: 12px;
+}
+
+.btn{
+  position: sticky;
+  display: flex;
+  width: 58px;
+  height: 25px;
+  padding: 9px 33px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+
+  border-radius: 32px;
+  background: var(--btn, rgba(78, 130, 232, 0.75));
+}
+
+.text{
+  color: var(--Neutral-800, #2C2B2B);
+  font-family: Inter;
+  font-size: 20.714px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.text-info {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 18px;
+  position: absolute;
+  top: 29px;
+  left: 38px;
+}
+
+.name {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: var(--neutral-800);
+  font-size: 32px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.description {
+  position: relative;
+  height: 51px;
+  width: 327px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: var(--neutral-800);
+  font-size: 20.7px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.featured-image {
+  position: absolute;
+  width: 403px;
+  height: 212px;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+/* endcontent */
+
+/* login */
+
+.welcome{
+  color: #000;
+  text-align: center;
+  font-family: "Inter";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+  flex-direction: column;
+  position: relative;
+}
+
+.login img{
+  width: 100%;
+  height: 920px;
+
+  position: sticky;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.login .frame{
+  position: absolute;
+
+  background-color: #ffffff;
+  width: 100%;
+  height: 661px;
+  flex-shrink: 0;
+}
+
+.login .box{
+  position: relative;
+  border-radius: 5px;
+  border: 0.5px solid #AFA9A9;
+  background: rgba(217, 217, 217, 0.50);
+
+  flex-direction: column;
+  justify-content: center;
+
+  width: 500px; 
+  height: 89.041px;
+  flex-shrink: 0;
+
+}
+
+.login .text{
+  position: absolute;
+  width: 77.519px;
+  height: 35.28px;
+  color: rgba(126, 124, 124, 0.40);
+  font-family: "Roboto";
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
