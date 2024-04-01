@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy import text
 from app import db
 from models import User
@@ -18,7 +18,7 @@ def register():
         user = User(username=username, password_hash=generate_password_hash(password))
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('login'))
+        return redirect(url_for('main.login'))
     return render_template('register.html')
 
 @main.route('/login', methods=['GET', 'POST'])
@@ -38,7 +38,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('main.home'))
 
 @main.route('/profile')
 @login_required
@@ -52,6 +52,7 @@ def recipes():
 
 @main.route('/')
 def home():
+    
     exclude_ingr = ''
     recipes = db.session.execute(text("call exclude_ingr(:exclude_ingr)"), {"exclude_ingr": exclude_ingr})
     #Строка -> в запрос, воспринимает как текст, ошибка формата. !!! 
