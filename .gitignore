@@ -1,3 +1,4 @@
 .env
 flasklibs/
-*.pyc
+__pycache__/
+*.docx
