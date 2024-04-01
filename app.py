@@ -1,6 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 
 db = SQLAlchemy()
 
@@ -8,7 +13,7 @@ def create_app():
 
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:3110@localhost/nutrifood'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("SQL")
     app.config['SECRET_KEY'] = '123'
 
     login_manager = LoginManager()
