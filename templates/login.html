@@ -11,10 +11,13 @@
 <div class="login">
     <img src="static\images\banner_login.png" />
     <div class="frame">
-        <div class="welcome">Добро пожаловать</div>
-        <div class="box"><input type="text" name="login" size="30"></div>
-        <div class="box">Password</div>
-        <div class="text">Нету аккаунта?</div>
+        <form method="POST" action="{{ url_for('main.login') }}">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
     </div>
 </div>
 {% endblock %}

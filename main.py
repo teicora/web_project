@@ -26,10 +26,12 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
+        print("Im in")
         user = User.query.filter_by(username=username).first()
         if user and check_password_hash(user.password_hash, password):
+            print("Im actualy in")
             login_user(user)
-            return redirect(url_for('home'))
+            return redirect(url_for('main.home'))
     return render_template('login.html')
 
 @main.route('/logout')
