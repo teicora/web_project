@@ -16,9 +16,13 @@
       <div class="navigation">
           <a href="/recipes">Рецепты</a>
           <a href="/favourites">Избранные</a>
-          <a href="/login">Авторизация</a>
+          {% if current_user.is_authenticated %}
+            <a href="/logout">Выйти</a>
+          {% else %}
+            <a href="/login">Авторизация</a>
+          {% endif %}
           {% if current_user.is_moderator %}
-            <a href="{{ url_for('add_recipe') }}">Добавить рецепт</a>
+            <a href="/add_recipe">Добавить рецепт</a>
           {% endif %}
       </div>
     </div>
