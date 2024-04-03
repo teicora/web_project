@@ -47,12 +47,12 @@
           <div class="overlap-group-2">
             <div class="text-info">
               <div class="name"><a href="/recipe/{{ recipe.id }}">{{ recipe.title }}</a></div>
-              <div class="description">{{ recipe.description }} </div>
+              <div class="description">{{ recipe.description }}</div>
             </div>
             <div class="container">
               <div class="btn"><div class="text">{{ recipe.time }}</div></div>
               <div class="btn"><div class="text">{{ recipe.kcal }}</div></div>
-              <div class="btn"><div class="text">{{ recipe.likes}}</div></div>
+              <div class="btn" id="likeButton"><div class="text">{{ recipe.likes }}</div></div>
             </div>
           </div>
           <img class="featured-image" src="/static/images/{{ recipe.image }}.png"/>
@@ -73,3 +73,21 @@
   </body>
 </html>
 
+<script>
+  document.getElementById('likeButton').addEventListener('click', function() {
+    // Perform actions when the like button is clicked
+    // For example, you can increment the like count and update the display
+    // You can access recipe.likes value through DOM manipulation or via JavaScript variables
+    // For simplicity, let's assume you have a function called incrementLikes() to handle this
+    incrementLikes();
+  });
+
+  function incrementLikes() {
+    // Example: Increment likes count and update the display
+    let likesElement = document.querySelector('#likeButton .text');
+    let currentLikes = parseInt(likesElement.textContent);
+    likesElement.textContent = currentLikes + 1;
+    
+    // Additional logic to send the updated like count to the server or perform other actions as needed
+  }
+</script>
