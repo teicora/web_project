@@ -3,3 +3,4 @@ flasklibs/
 __pycache__/
 *.docx
 venv/
+.mwb

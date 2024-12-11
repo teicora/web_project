@@ -1,1 +1,45 @@
 {% extends "home.html" %}
+
+{% block header %}
+{{ super()}}
+{% endblock %}
+
+{% block banner %}
+{% endblock %}
+
+{% block content %}
+
+<body>
+    <h1>Добавить рецепт</h1>
+    <form method="POST" action="/add_recipe" enctype="multipart/form-data">
+        <label for="title">Название рецепта:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="description">Описание:</label><br>
+        <textarea id="description" name="description" required></textarea><br><br>
+
+        <label for="time">Время приготовления (в минутах):</label><br>
+        <input type="number" id="time" name="time" required><br><br>
+
+        <label for="kcal">Калорийность:</label><br>
+        <input type="number" id="kcal" name="kcal" required><br><br>
+
+        <label for="ingredients">Ингредиенты (введите через запятую):</label><br>
+        <input type="text" id="ingredients" name="ingredients" placeholder="Например: мука, сахар, яйца" required><br><br>
+
+        <label for="instructions">Инструкции:</label><br>
+        <textarea id="instructions" name="instructions" required></textarea><br><br>
+
+        <label for="image">Изображение:</label><br>
+        <input type="file" id="image" name="image" accept="image/*"><br><br>
+
+        <button type="submit">Добавить рецепт</button>
+    </form>
+</body>
+</html>
+
+{% endblock %}
+
+{% block footer %}
+{{ super()}}
+{% endblock %}
