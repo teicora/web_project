@@ -26,3 +26,4 @@ def recipe_content(recipe_id):
     data = db.session.execute(text("select recipes.instructions from recipes where recipes.id = :recipe_id"), {"recipe_id": recipe_id})
     instructions = data.fetchone()[0]
     return render_template('recipe.html', instructions=instructions, title=title, banner_title=banner_title)
+

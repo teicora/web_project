@@ -9,7 +9,9 @@
   <body>
     {% block header %}
     <div class="header">
-      <div class="logo">NutriFood</div>
+      <div class="logo">
+        <a href="/">NutriFood</a>
+      </div>
       <div class="search-bar">
         <input type="text" placeholder="Введите что-нибудь">
       </div>
@@ -64,12 +66,24 @@
     {% endblock %}
     {% block footer %}
     <footer class="footer">
-      <div class="logo-2">
-        <div class="text-wrapper-4">NutriFood</div>
-        <img class="icon-2" src="img/image.svg" />
+      <div class="footer-content">
+        <div class="logo-2">
+          <img class="icon-2" src="img/image.svg" alt="NutriFood Logo">
+          <div class="text-wrapper-4">NutriFood</div>
+        </div>
+        <div class="footer-info">
+          <p>© 2024 NutriFood. Все права защищены.</p>
+          <p>Контакты: support@nutrifood.com | +1 234 567 890</p>
+        </div>
+        <div class="social-icons">
+          <a href="#"><img src="img/facebook-icon.svg" alt="Facebook"></a>
+          <a href="#"><img src="img/twitter-icon.svg" alt="Twitter"></a>
+          <a href="#"><img src="img/instagram-icon.svg" alt="Instagram"></a>
+        </div>
       </div>
     </footer>
-    {% endblock %}
+{% endblock %}
+
   </body>
 </html>
 
