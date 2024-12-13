@@ -1,23 +1,96 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+import os
+from flask import Blueprint, render_template, request, redirect, url_for, current_app, flash
 from flask_login import login_required, current_user
 from app import db
-from models import User
+from werkzeug.utils import secure_filename
+from models import Recipe, Ingredient, UserRecipe, RecipeIngredient  # Ваши SQLAlchemy модели
 
 admin = Blueprint('admin', __name__)
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}  # Разрешённые форматы файлов
+
+
+def allowed_file(filename):
+    """Проверяет, допустим ли формат файла."""
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @admin.route('/add_recipe', methods=['GET', 'POST'])
 @login_required
 def add_recipe():
+    # Проверка прав модератора
     if not current_user.is_moderator:
-        return redirect(url_for('main.home'))  # Запрет доступа для неадминистраторов
+        flash("У вас нет прав для добавления рецептов.", "warning")
+        return redirect(url_for('main.home'))
 
     if request.method == 'POST':
-        recipe_name = request.form.get('recipe_name')
+        # Получаем данные из формы
+        title = request.form.get('title')
+        description = request.form.get('description')
+        time = request.form.get('time')
+        kcal = request.form.get('kcal')
         instructions = request.form.get('instructions')
-        db.session.execute(
-            "INSERT INTO recipes (name, instructions) VALUES (:name, :instructions)",
-            {"name": recipe_name, "instructions": instructions}
+        ingredients_str = request.form.get('ingredients')
+
+        # Проверка обязательных полей
+        if not title or not instructions or not ingredients_str:
+            flash("Заполните все обязательные поля.", "danger")
+            return redirect(url_for('admin.add_recipe'))
+
+        # Обработка изображения
+        image_file = request.files.get('image')
+        image_filename = None
+
+        if image_file and image_file.filename != '':
+            if allowed_file(image_file.filename):
+                # Генерируем безопасное имя файла
+                filename = secure_filename(image_file.filename)
+                upload_path = os.path.join(current_app.static_folder, 'images')
+                os.makedirs(upload_path, exist_ok=True)  # Убедимся, что папка существует
+                image_filename = f"{int(time.time())}_{filename}"
+                image_path = os.path.join(upload_path, image_filename)
+                image_file.save(image_path)
+            else:
+                flash("Формат изображения недопустим. Разрешены: png, jpg, jpeg.", "danger")
+                return redirect(url_for('admin.add_recipe'))
+
+        # Создаём новый рецепт
+        new_recipe = Recipe(
+            title=title,
+            description=description,
+            time=int(time),
+            kcal=int(kcal),
+            instructions=instructions,
+            image=image_filename,
+            likes=0  # По умолчанию 0 лайков
         )
+        db.session.add(new_recipe)
         db.session.commit()
+
+        # Связываем рецепт с текущим пользователем
+        user_recipe = UserRecipe(user_id=current_user.id, recipe_id=new_recipe.id)
+        db.session.add(user_recipe)
+        db.session.commit()
+
+        # Обрабатываем ингредиенты
+        ingredients_list = [ing.strip() for ing in ingredients_str.split(',') if ing.strip()]
+        for ing_name in ingredients_list:
+            # Проверяем, существует ли ингредиент
+            ingredient = Ingredient.query.filter_by(name=ing_name).first()
+            if not ingredient:
+                # Если ингредиента нет, создаём его
+                ingredient = Ingredient(name=ing_name)
+                db.session.add(ingredient)
+                db.session.commit()
+
+            # Связываем ингредиент с рецептом
+            recipe_ingredient = RecipeIngredient(recipe_id=new_recipe.id, ingredient_id=ingredient.id)
+            db.session.add(recipe_ingredient)
+
+        # Сохраняем все изменения
+        db.session.commit()
+
+        flash("Рецепт успешно добавлен!", "success")
         return redirect(url_for('admin.add_recipe'))
+
     return render_template('add_recipe.html')

@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
-from sqlalchemy import text
+from sqlalchemy import text, desc
 from app import db
+from models import Recipe
 
 main = Blueprint('main', __name__)
 
@@ -15,11 +16,16 @@ def home():
 
 @main.route('/recipes')
 def recipes():
-    return render_template('recipes.html')
+    recipes = db.session.query(Recipe).order_by(desc(Recipe.likes)).limit(10).all()
+    return render_template('recipes.html', recipes=recipes)
 
 @main.route('/profile')
 def profile():
     return render_template('profile.html')
+
+@main.route('/favourites')
+def favourites():
+    return render_template('favourites.html')
 
 @main.route('/recipe/<int:recipe_id>')
 def recipe_content(recipe_id):

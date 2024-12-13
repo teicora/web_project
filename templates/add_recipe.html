@@ -8,10 +8,9 @@
 {% endblock %}
 
 {% block content %}
-
-<body>
+<div class="frame">
     <h1>Добавить рецепт</h1>
-    <form method="POST" action="/add_recipe" enctype="multipart/form-data">
+    <form method="POST" action="{{ url_for('admin.add_recipe') }}" enctype="multipart/form-data">
         <label for="title">Название рецепта:</label><br>
         <input type="text" id="title" name="title" required><br><br>
 
@@ -21,10 +20,10 @@
         <label for="time">Время приготовления (в минутах):</label><br>
         <input type="number" id="time" name="time" required><br><br>
 
-        <label for="kcal">Калорийность:</label><br>
+        <label for="kcal">Калорийность (ккал):</label><br>
         <input type="number" id="kcal" name="kcal" required><br><br>
 
-        <label for="ingredients">Ингредиенты (введите через запятую):</label><br>
+        <label for="ingredients">Ингредиенты (через запятую):</label><br>
         <input type="text" id="ingredients" name="ingredients" placeholder="Например: мука, сахар, яйца" required><br><br>
 
         <label for="instructions">Инструкции:</label><br>
@@ -35,9 +34,8 @@
 
         <button type="submit">Добавить рецепт</button>
     </form>
-</body>
-</html>
 
+</div>
 {% endblock %}
 
 {% block footer %}
