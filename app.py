@@ -1,13 +1,9 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from database import db
 from dotenv import load_dotenv
 import os
-import pymysql
-
-pymysql.install_as_MySQLdb()
 load_dotenv()
-db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)

@@ -1,6 +1,6 @@
 .env
 flasklibs/
-__pycache__/
+/__pycache__/
 *.docx
 venv/
 .mwb

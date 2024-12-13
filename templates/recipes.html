@@ -8,12 +8,16 @@
 {{ super()}}
 {% endblock %}
 
-{% block footer %}
-{{ super()}}
-{% endblock %}
-
 {% block content %}
 <div class="frame">
-  
+    {% for recipe in recipes %}
+        <div class="recipe">
+            <h3><a href="/recipe/{{ recipe.id }}">{{ recipe.title }}</a></h3>
+            <p>{{ recipe.description }}</p>
+        </div>
+    {% endfor %}
 </div>
+
+<script src="/static/js/scroll.js"></script>
+
 {% endblock %}
