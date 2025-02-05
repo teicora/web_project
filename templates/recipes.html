@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block banner %}
-{{ super()}}
+<img src="static/images/banner_login.png" alt="Banner" style="height: 100px; width: auto; object-fit: cover; display: block;">
 {% endblock %}
 
 {% block content %}
@@ -17,6 +17,14 @@
         </div>
     {% endfor %}
 </div>
+
+<style>
+    .frame {
+        max-height: 80vh; /* фиксируем высоту, чтобы был виден скролл */
+        overflow-y: auto; 
+        border: 1px solid #ccc;
+    }
+</style>
 
 <script src="/static/js/scroll.js"></script>
 

@@ -42,11 +42,11 @@
 
     {% block content %}
     <div class="frame">
-      <div class="text-wrapper-9">{{ title }}</div>
+      <div class="content-title">{{ title }}</div>
       <div class="cards">
         {% for recipe in recipes %}
         <div class="card">
-          <div class="overlap-group-2">
+          <div class="card-description">
             <div class="text-info">
               <div class="name"><a href="/recipe/{{ recipe.id }}">{{ recipe.title }}</a></div>
               <div class="description">{{ recipe.description }}</div>
