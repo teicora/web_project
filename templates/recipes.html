@@ -18,6 +18,14 @@
     {% endfor %}
 </div>
 
+<style>
+    .frame {
+        max-height: 80vh; /* фиксируем высоту, чтобы был виден скролл */
+        overflow-y: auto; 
+        border: 1px solid #ccc;
+    }
+</style>
+
 <script src="/static/js/scroll.js"></script>
 
 {% endblock %}

@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `nutrifood` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `nutrifood`;
+-- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
 -- Host: localhost    Database: nutrifood
 -- ------------------------------------------------------
--- Server version	8.0.34
+-- Server version	8.0.40
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -151,7 +153,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'CookMaster','cookmaster@example.com','password123',0),(2,'ChefGourmet','chefgourmet@example.com','password456',0),(5,'123',NULL,'scrypt:32768:8:1$iEoXe2T2rVtYnzwN$5b838bf04bab75f340557e89847e7f01c377b1016603a51515db2d4f27f403063a2f5be7e5a98c8decfda0a576545bac2c8cab8cd846ccbd38599b79ee8ade56',0),(6,'12',NULL,'scrypt:32768:8:1$h45cLdfgpu6NplqH$860fd7338c38736b793f77185cd8d9d93e47106b5c211f2245bb50b1f76b85c21c7fe8fe1894d8181dc78d306425c980de5356d78f142b2eaa3819c2f0147ec1',0);
+INSERT INTO `users` VALUES (1,'CookMaster','cookmaster@example.com','password123',0),(2,'ChefGourmet','chefgourmet@example.com','password456',0),(5,'123',NULL,'scrypt:32768:8:1$iEoXe2T2rVtYnzwN$5b838bf04bab75f340557e89847e7f01c377b1016603a51515db2d4f27f403063a2f5be7e5a98c8decfda0a576545bac2c8cab8cd846ccbd38599b79ee8ade56',1),(6,'12',NULL,'scrypt:32768:8:1$h45cLdfgpu6NplqH$860fd7338c38736b793f77185cd8d9d93e47106b5c211f2245bb50b1f76b85c21c7fe8fe1894d8181dc78d306425c980de5356d78f142b2eaa3819c2f0147ec1',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,4 +202,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-08 13:42:32
+-- Dump completed on 2025-02-05 12:46:53
