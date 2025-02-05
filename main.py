@@ -61,3 +61,31 @@ def api_recipes():
     
     # Возвращаем JSON
     return jsonify(recipes_list)
+@main.route('/api/recipes')
+def api_recipes():
+    """
+    Пример: /api/recipes?page=2
+    Возвращает JSON со списком рецептов для указанной страницы.
+    """
+    # Получаем параметр page (по умолчанию 1)
+    page = request.args.get('page', 1, type=int)
+    per_page = 5  # Сколько рецептов возвращать на страницу
+
+    # Пагинация через offset и limit
+    offset = (page - 1) * per_page
+    recipes_query = (db.session.query(Recipe)
+                     .order_by(desc(Recipe.likes))
+                     .offset(offset)
+                     .limit(per_page))
+    
+    recipes_list = []
+    for recipe in recipes_query:
+        recipes_list.append({
+            "id": recipe.id,
+            "name": recipe.title,        # Возможно, recipe.title
+            "description": recipe.description
+            # Добавьте и другие поля по необходимости
+        })
+    
+    # Возвращаем JSON
+    return jsonify(recipes_list)
