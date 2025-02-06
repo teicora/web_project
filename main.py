@@ -54,7 +54,8 @@ def api_recipes():
     for recipe in recipes_query:
         recipes_list.append({
             "id": recipe.id,
-            "name": recipe.title,        # Возможно, recipe.title
+            "image": recipe.image,
+            "title": recipe.title,        # Возможно, recipe.title
             "description": recipe.description
             # Добавьте и другие поля по необходимости
         })

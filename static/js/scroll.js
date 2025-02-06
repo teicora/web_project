@@ -26,8 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const recipeElement = document.createElement("div");
         recipeElement.className = "recipe";
         recipeElement.innerHTML = `
-          <h3><a href="/recipe/${recipe.id}">${recipe.name}</a></h3>
-          <p>${recipe.description}</p>
+          <div class="recipes-card">
+            <img class="recipes-image" src="${ recipe.image }">
+            <div class="recipes-info">
+              <h3 class="recipes-name">${ recipe.title }</h3>
+              <p class="recipes-description">${ recipe.description }</p>
+            </div>
+          </div>
         `;
         container.appendChild(recipeElement);
       });

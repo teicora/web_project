@@ -4,16 +4,15 @@ from flask_login import login_required, current_user
 from app import db
 from werkzeug.utils import secure_filename
 from models import Recipe, Ingredient, UserRecipe, RecipeIngredient  # Ваши SQLAlchemy модели
+import time 
 
 admin = Blueprint('admin', __name__)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}  # Разрешённые форматы файлов
 
-
 def allowed_file(filename):
     """Проверяет, допустим ли формат файла."""
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 
 @admin.route('/add_recipe', methods=['GET', 'POST'])
 @login_required
@@ -27,7 +26,7 @@ def add_recipe():
         # Получаем данные из формы
         title = request.form.get('title')
         description = request.form.get('description')
-        time = request.form.get('time')
+        cooking_time = request.form.get('time')
         kcal = request.form.get('kcal')
         instructions = request.form.get('instructions')
         ingredients_str = request.form.get('ingredients')
@@ -45,11 +44,14 @@ def add_recipe():
             if allowed_file(image_file.filename):
                 # Генерируем безопасное имя файла
                 filename = secure_filename(image_file.filename)
-                upload_path = os.path.join(current_app.static_folder, 'images')
-                os.makedirs(upload_path, exist_ok=True)  # Убедимся, что папка существует
+                # Формируем относительный путь от static (например, "images/1679823412_photo.jpg")
                 image_filename = f"{int(time.time())}_{filename}"
-                image_path = os.path.join(upload_path, image_filename)
-                image_file.save(image_path)
+                relative_path = os.path.join('images', image_filename)
+                # Абсолютный путь для сохранения файла
+                absolute_path = os.path.join(current_app.static_folder, relative_path)
+                # Убедимся, что папка существует
+                os.makedirs(os.path.join(current_app.static_folder, 'images'), exist_ok=True)
+                image_file.save(absolute_path)
             else:
                 flash("Формат изображения недопустим. Разрешены: png, jpg, jpeg.", "danger")
                 return redirect(url_for('admin.add_recipe'))
@@ -58,10 +60,10 @@ def add_recipe():
         new_recipe = Recipe(
             title=title,
             description=description,
-            time=int(time),
+            time=int(cooking_time),
             kcal=int(kcal),
             instructions=instructions,
-            image=image_filename,
+            image=relative_path,  # сохраняем относительный путь, например "images/1679823412_photo.jpg"
             likes=0  # По умолчанию 0 лайков
         )
         db.session.add(new_recipe)

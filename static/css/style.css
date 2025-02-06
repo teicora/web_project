@@ -206,7 +206,65 @@ a {
   color: black;
 }
 
-/* content ИДЕАЛЬНО СДЕЛАНО*/
+/* content-recipes */
+
+.recipes-card {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 12px; /* Скругление углов контейнера */
+  overflow: hidden; /* Чтобы содержимое не выходило за скруглённые границы */
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.recipes-image {
+  flex: 0 0 150px; /* Фиксированная ширина для изображения */
+  height: 100px;
+  overflow: hidden;
+}
+
+.recipes-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Обеспечивает корректное заполнение контейнера */
+  display: block;
+}
+
+.recipes-info {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.recipes-name {
+  font-family: "Inter-Bold", sans-serif;
+  font-size: 20px;
+  margin: 0 0 5px;
+}
+
+.recipes-description {
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 16px;
+  margin: 0;
+  color: #666;
+}
+
+
+.recipes-container {
+  max-height: 80vh; /* Фиксируем высоту, чтобы был виден скролл */
+  width: 80%;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.recipes-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* content-home ИДЕАЛЬНО СДЕЛАНО*/
 .content-title {
   font-family: var(--banner-font-family);
   font-weight: var(--banner-font-weight);
@@ -225,20 +283,8 @@ a {
   margin: 10px 0;
 }
 
-.recipes-container {
-  max-height: 80vh; /* Фиксируем высоту, чтобы был виден скролл */
-  width: 80%;
-  overflow-y: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-}
-
-.recipes-container::-webkit-scrollbar {
-  display: none;
-}
-
 /* Контейнер карточек */
-.cards {
+.home-cards {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -247,7 +293,7 @@ a {
 }
 
 /* Оформление отдельной карточки */
-.cards .card {
+.home-cards .card {
   width: 250px;
   height: 350px;
   position: relative;
@@ -255,7 +301,7 @@ a {
 }
 
 /* Изображение в карточке */
-.cards .card .featured-image {
+.home-cards .card .featured-image {
   position: absolute;
   top: 0;
   left: 0;
@@ -266,7 +312,7 @@ a {
 }
 
 /* Описание карточки */
-.cards .card .card-description {
+.home-cards .card .card-description {
   position: absolute;
   top: 200px;
   left: 0;
@@ -286,7 +332,7 @@ a {
 }
 
 /* Заголовок карточки */
-.cards .card .card-description .name {
+.home-cards .card .card-description .name {
   font-family: var(--main-font-family);
   font-weight: 700;
   font-size: 24px;
@@ -295,7 +341,7 @@ a {
 }
 
 /* Описание карточки */
-.cards .card .card-description .description {
+.home-cards .card .card-description .description {
   font-family: var(--main-font-family);
   font-weight: 400;
   font-size: 16px;
@@ -306,7 +352,7 @@ a {
 }
 
 /* Контейнер для кнопки */
-.cards .card .card-description .container {
+.home-cards .card .card-description .container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -316,7 +362,7 @@ a {
 }
 
 /* Кнопка - фиксированный квадрат */
-.cards .card .card-description .container .btn {
+.home-cards .card .card-description .container .btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -328,7 +374,7 @@ a {
 }
 
 /* Текст внутри кнопки */
-.cards .card .card-description .container .btn .text {
+.home-cards .card .card-description .container .btn .text {
   font-family: var(--main-font-family);
   font-weight: 700;
   font-size: 16px;
