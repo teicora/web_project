@@ -51,5 +51,10 @@
     --logo-text-small-letter-spacing: 0px;
     --logo-text-small-line-height: normal;
     --logo-text-small-font-style: normal;
+    --main-font-family: 'Inter', sans-serif;
+    --main-font-weight: 400;
+    --banner-font-family: var(--all-banner-font-family, 'Inter-Bold', sans-serif);
+    --banner-font-weight: var(--all-banner-font-weight, 700);
+    --banner-font-size: var(--all-banner-font-size, 24px);
   }
   

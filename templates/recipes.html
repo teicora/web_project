@@ -1,31 +1,20 @@
 {% extends "home.html" %}
 
-{% block header %}
-{{ super()}}
-{% endblock %}
-
 {% block banner %}
-<img src="static/images/banner_login.png" alt="Banner" style="height: 100px; width: auto; object-fit: cover; display: block;">
 {% endblock %}
 
 {% block content %}
 <div class="frame">
+  <div class="recipes-container">
+    <!-- Первые рецепты, отрендеренные на сервере -->
     {% for recipe in recipes %}
-        <div class="recipe">
-            <h3><a href="/recipe/{{ recipe.id }}">{{ recipe.title }}</a></h3>
-            <p>{{ recipe.description }}</p>
-        </div>
+      <div class="recipe">
+        <h3><a href="/recipe/{{ recipe.id }}">{{ recipe.title }}</a></h3>
+        <p>{{ recipe.description }}</p>
+      </div>
     {% endfor %}
+  </div>
 </div>
 
-<style>
-    .frame {
-        max-height: 80vh; /* фиксируем высоту, чтобы был виден скролл */
-        overflow-y: auto; 
-        border: 1px solid #ccc;
-    }
-</style>
-
 <script src="/static/js/scroll.js"></script>
-
 {% endblock %}

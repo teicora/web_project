@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector(".frame");
-  let page = 2; // Начинаем со второй страницы, так как первая уже отображена
+  // Выбираем контейнер, в котором происходит прокрутка
+  const container = document.querySelector(".recipes-container");
+  let page = 2; // Первая порция уже отрендерена на сервере
   let loading = false;
 
   async function loadMoreRecipes() {
@@ -9,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(`/api/recipes?page=${page}`);
+      if (!response.ok) {
+        throw new Error(`Ошибка HTTP: ${response.status}`);
+      }
       const newRecipes = await response.json();
 
       // Если новых рецептов нет, отцепляем обработчик скролла
@@ -22,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const recipeElement = document.createElement("div");
         recipeElement.className = "recipe";
         recipeElement.innerHTML = `
-            <h3><a href="/recipe/{{ recipe.id }}">${ recipe.title }</a></h3>
-            <p>${ recipe.description }</p>
+          <h3><a href="/recipe/${recipe.id}">${recipe.name}</a></h3>
+          <p>${recipe.description}</p>
         `;
         container.appendChild(recipeElement);
       });
