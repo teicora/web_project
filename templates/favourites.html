@@ -1,20 +1,22 @@
 {% extends "home.html" %}
 
-{% block header %}
-{{ super()}}
+{% block banner %}
 {% endblock %}
 
 {% block content %}
-<div class="frame">
-  {% for recipe in recipes %}
-      <div class="recipe">
-          <h3>{{ recipe.name }}</h3>
-          <p>{{ recipe.description }}</p>
+<div class="recipes-frame">
+  <div class="recipes-container">
+    <!-- Первые рецепты, отрендеренные на сервере -->
+    {% for recipe in recipes %}
+        <div class="recipes-card">
+        <img class="recipes-image" src="{{ recipe.image }}">
+        <div class="recipes-info">
+          <h3 class="recipes-name"><a href="/recipe/{{ recipe.id }}">{{ recipe.title }}</a></h3>
+          <p class="recipes-description">{{ recipe.description }}</p>
+        </div>
       </div>
-  {% endfor %}
+    {% endfor %}
+  </div>
 </div>
-
-<script src="{{ url_for('static', filename='js/infiniteScroll.js') }}"></script>
-
-
+<script src="/static/js/scroll.js"></script>
 {% endblock %}

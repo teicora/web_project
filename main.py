@@ -10,8 +10,7 @@ banner_title = "Избавьтесь от привычек, позаботьте
 
 @main.route('/')
 def home():
-    exclude_ingr = ''
-    recipes = db.session.execute(text("call exclude_ingr(:exclude_ingr)"), {"exclude_ingr": exclude_ingr})
+    recipes = db.session.query(Recipe).order_by(desc(Recipe.likes)).limit(3).all()    
     return render_template('home.html', recipes=recipes, title=title, banner_title=banner_title)
 
 @main.route('/recipes')

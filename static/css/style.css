@@ -19,12 +19,13 @@ body {
 /* header */
 
 .header {
-  height: 80px;
+  height: 70px;
   display: flex;
   padding: 5px;
   justify-content: space-between;
   align-items: center; /* Добавляем это свойство */
   position: relative;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Добавляет тень снизу */
 }
 
 .header::before {
@@ -208,6 +209,17 @@ a {
 
 /* content-recipes */
 
+.recipes-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  height: 583.2px;
+  position: relative;
+  margin: 10px 0;
+}
+
 .recipes-card {
   display: flex;
   border: 1px solid #ccc;
@@ -273,12 +285,13 @@ a {
 }
 
 /* Контейнер для общего расположения */
-.frame {
+.home-frame {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 20px;
+  height: 433.2px;
   position: relative;
   margin: 10px 0;
 }
@@ -298,6 +311,10 @@ a {
   height: 350px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white-200);
+  border-radius: 33px;
 }
 
 /* Изображение в карточке */
@@ -322,33 +339,41 @@ a {
   border-radius: 0 0 33px 33px;
   box-sizing: border-box;
   padding: 10px;
-  
-  /* Используем flex для вертикального расположения элементов */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  overflow: hidden;
 }
 
 /* Заголовок карточки */
 .home-cards .card .card-description .name {
   font-family: var(--main-font-family);
   font-weight: 700;
-  font-size: 24px;
+  font-size: 20px;
   color: var(--neutral-800);
-  margin: 0;
+  text-align: center;
+  white-space: nowrap; /* Запрещает перенос строк */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Добавляет "..." при длинных заголовках */
+  max-width: 90%;
 }
 
 /* Описание карточки */
 .home-cards .card .card-description .description {
   font-family: var(--main-font-family);
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--neutral-800);
-  margin: 0;
   text-align: center;
   line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Ограничение до 3 строк */
+  -webkit-box-orient: vertical;
+  max-height: 3.6em; /* Ограничение по высоте для кросс-браузерности */
 }
 
 /* Контейнер для кнопки */
@@ -357,18 +382,18 @@ a {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  height: 20%;
+  height: 30px;
   width: 100%;
 }
 
-/* Кнопка - фиксированный квадрат */
+/* Кнопка */
 .home-cards .card .card-description .container .btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 33%;       /* Фиксированная ширина */
-  height: 100%;
-  border-radius: 10px;/* Фиксированный радиус скругления */
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
   background: var(--btn, rgba(78, 130, 232, 0.75));
   cursor: pointer;
 }
@@ -377,10 +402,11 @@ a {
 .home-cards .card .card-description .container .btn .text {
   font-family: var(--main-font-family);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--neutral-800, #2C2B2B);
-  margin: 0;
+  text-align: center;
 }
+
 
 /* endcontent */
 

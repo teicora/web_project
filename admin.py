@@ -46,9 +46,9 @@ def add_recipe():
                 filename = secure_filename(image_file.filename)
                 # Формируем относительный путь от static (например, "images/1679823412_photo.jpg")
                 image_filename = f"{int(time.time())}_{filename}"
-                relative_path = os.path.join('images', image_filename)
+                relative_path = "static/images/" + image_filename
                 # Абсолютный путь для сохранения файла
-                absolute_path = os.path.join(current_app.static_folder, relative_path)
+                absolute_path = os.path.join(current_app.static_folder, os.path.join('images', image_filename))
                 # Убедимся, что папка существует
                 os.makedirs(os.path.join(current_app.static_folder, 'images'), exist_ok=True)
                 image_file.save(absolute_path)
@@ -59,7 +59,7 @@ def add_recipe():
         # Создаём новый рецепт
         new_recipe = Recipe(
             title=title,
-            description=description,
+            description=description,    
             time=int(cooking_time),
             kcal=int(kcal),
             instructions=instructions,
